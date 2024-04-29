@@ -1,0 +1,25 @@
+<!-- Launch file for this ROS package -->
+
+<!-- 
+    Using this script, it is possible to launch multiple nodes in one command window.
+    Also, parameters can be modified directly here without the need of recompiling.
+    For the docs, see http://wiki.ros.org/roslaunch
+-->
+<launch>
+    <!-- <node name="console" pkg="rqt_console" type="rqt_console" output="screen"/> -->
+    <param name="/Kp_vel" type="double" value="1"/>
+    <param name="/Ki_vel" type="double" value="1"/>
+    <param name="/Kd_vel" type="double" value="0"/>
+    <param name="/Kp_psi" type="double" value="30.0"/>
+    <param name="/Ki_psi" type="double" value="10"/>
+    <param name="/Kd_psi" type="double" value="10"/>
+    <param name="/goal_position_x" type="double" value="5"/>
+    <param name="/goal_position_y" type="double" value="5"/>
+    <param name="/goal_tolerance" type="double" value="0.05"/>
+    <param name="/number_obstacles" type="int" value="0"/>
+    <!-- <rosparam param="/obstacle_position"> [ 1, 0.2 ] </rosparam> -->
+    <node name="plot_utility" pkg="planner_controller" type="plot_utility.py" output="screen" />
+    <node name="plant" pkg="planner_controller" type="plant" output="screen" />
+    <node name="APF" pkg="planner_controller" type="APF" output="screen" />
+    <node name="PID" pkg="planner_controller" type="PID" output="screen" />
+</launch>
